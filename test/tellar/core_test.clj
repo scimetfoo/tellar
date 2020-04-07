@@ -105,7 +105,7 @@
     (is (= (dissoc-all nested-structure :foo) nested-structure))))
 
 (deftest assoc-nth-test
-  (testing "assoc in place of the first occurrence of :name"
+  (testing "assoc the first occurrence of :name"
     (is (= (assoc-nth nested-structure :name "foo" 1)
            {:name   "foo"
             :artist [{:name "The Beatles"}]
@@ -120,7 +120,7 @@
                       :artist     [{:name "The Beatles"}]
                       :songwriter [{:name "George Harrison"}]}]})))
 
-  (testing "assoc in place of the fourth occurrence of :name"
+  (testing "assoc the fourth occurrence of :name"
     (is (= (assoc-nth nested-structure :name "foo" 4)
            {:name   "Abbey Road"
             :artist [{:name "The Beatles"}]
@@ -135,7 +135,7 @@
                       :artist     [{:name "The Beatles"}]
                       :songwriter [{:name "George Harrison"}]}]}))
 
-    (testing "assoc in place of the first occurrence of :artist"
+    (testing "assoc the first occurrence of :artist"
       (is (= (assoc-nth nested-structure :artist "Betelgeuse" 1)
              {:name   "Abbey Road"
               :artist "Betelgeuse"
@@ -150,7 +150,7 @@
                         :artist     [{:name "The Beatles"}]
                         :songwriter [{:name "George Harrison"}]}]})))
 
-    (testing "assoc in place of a key that doesn't exist"
+    (testing "assoc a key that doesn't exist"
       (is (= (assoc-nth nested-structure :record-label "the-record-label-for-this-album" 4)
              {:name   "Abbey Road"
               :artist [{:name "The Beatles"}]
@@ -169,13 +169,17 @@
     (is (thrown? AssertionError (assoc-nth nested-structure :name "foo" 0)))))
 
 (deftest assoc-all-test
-  (testing "assoc in place of all occurrences of :tracks"
+  (testing "assoc all occurrences of :foo"
+    (is (= (assoc-all [[[{:foo 1 :bar 2} {:baz 3}]]] :foo 2)
+           [[[{:foo 2 :bar 2} {:baz 3}]]])))
+
+  (testing "assoc all occurrences of :tracks"
     (is (= (assoc-all nested-structure :tracks "foo")
            {:name   "Abbey Road"
             :artist [{:name "The Beatles"}]
             :tracks "foo"})))
 
-  (testing "assoc in place of all occurrences of :songwriter"
+  (testing "assoc all occurrences of :songwriter"
     (is (= (assoc-all nested-structure :songwriter "Beetle")
            {:name   "Abbey Road"
             :artist [{:name "The Beatles"}]
@@ -189,7 +193,7 @@
                       :artist     [{:name "The Beatles"}]
                       :songwriter "Beetle"}]})))
 
-  (testing "assoc in place of a key that doesn't exist"
+  (testing "assoc a key that doesn't exist"
     (is (= (assoc-all nested-structure :record "the-record-label-for-this-album")
            {:name   "Abbey Road"
             :artist [{:name "The Beatles"}]
