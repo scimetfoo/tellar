@@ -1,6 +1,6 @@
 # Tellar
 
-Tellar is a Clojure library that makes working with deeply nested collections easier. Initially made with a motivation of reducing some of the redundancies in fixtures and tests of a project by cutting the cost of copying a large collection multiple times over for each test only to make minor modifications, Tellar helps modify deeply nested collections with the help `assoc-nth`, `assoc-all`, `dissoc-nth`, `dissoc-all`, and `update-all`.
+Tellar is a Clojure library that makes working with deeply nested collections easy. It was initially made with the intent of reducing redundancies in factories used by tests. Tellar can help modify deeply nested collections with the help of `assoc-nth`, `assoc-all`, `dissoc-nth`, `dissoc-all`, and `update-all`.
 
 ## Usage
 
